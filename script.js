@@ -108,30 +108,31 @@ document.addEventListener('DOMContentLoaded', () => {
     const coverBg = document.querySelector('.cover-bg');
 
     function initAudio() {
-        if (isAudioInitialized) return;
-        isAudioInitialized = true;
+        // Jika UI belum dimodifikasi, jalankan animasi detak dan sembunyikan petunjuk
+        if (!isAudioInitialized) {
+            isAudioInitialized = true;
 
-        // Hilangkan petunjuk musik jika ada
-        const musicHint = document.getElementById('music-hint');
-        if (musicHint) musicHint.style.opacity = '0';
-        if (musicHint) setTimeout(() => musicHint.style.display = 'none', 500);
+            const musicHint = document.getElementById('music-hint');
+            if (musicHint) musicHint.style.opacity = '0';
+            if (musicHint) setTimeout(() => musicHint.style.display = 'none', 500);
 
-        // Tambahkan simulasi getaran ke semua elemen di cover secara terpisah agar rapi
-        const coverBg = document.querySelector('.cover-bg');
-        const coverImg = document.querySelector('.cover-mempelai-img');
-        const coverContent = document.querySelector('.cover-content');
-        const coverBtn = document.querySelector('#openInvitation');
+            // Tambahkan simulasi getaran
+            const coverBg = document.querySelector('.cover-bg');
+            const coverImg = document.querySelector('.cover-mempelai-img');
+            const coverContent = document.querySelector('.cover-content');
+            const coverBtn = document.querySelector('#openInvitation');
 
-        if (coverBg) coverBg.classList.add('simulated-beat-bg');
-        if (coverImg) coverImg.classList.add('simulated-beat-img');
-        if (coverContent) coverContent.classList.add('simulated-beat-content');
-        if (coverBtn) coverBtn.classList.add('simulated-beat-btn');
-        
-        document.body.classList.add('playing-music'); // Trigger animasi denyut global untuk tubuh undangan
-        
-        // Langsung putar audio secara normal (tanpa manipulasi yang bikin suara hilang di file lokal)
-        if (bgMusic) {
-            bgMusic.play().catch(e => console.log('Autoplay ditahan browser:', e));
+            if (coverBg) coverBg.classList.add('simulated-beat-bg');
+            if (coverImg) coverImg.classList.add('simulated-beat-img');
+            if (coverContent) coverContent.classList.add('simulated-beat-content');
+            if (coverBtn) coverBtn.classList.add('simulated-beat-btn');
+            
+            document.body.classList.add('playing-music');
+        }
+
+        // Selalu coba memutar musik jika sedang terjeda/ditahan browser
+        if (bgMusic && bgMusic.paused) {
+            bgMusic.play().catch(e => console.log('Autoplay ditahan browser, coba lagi:', e));
         }
     }
 
