@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Pernikahan Adat Bugis</title>
+    <meta name="description" content="Undangan Pernikahan Digital Adat Bugis dengan Tampilan Modern">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Great+Vibes&family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/brittany-signature" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=54">
+</head>
+
+<body>
+
+    <!-- Cover Section (Opens before scrolling) -->
+    <div id="cover" class="cover-section">
+        <div class="cover-bg"></div>
+        <div id="music-hint" class="music-hint">🎵 Ketuk layar untuk musik 🎵</div>
+        <!-- Foto Orang/Mempelai -->
+        <img src="bg11.jpg" alt="Mempelai Cover" class="cover-mempelai-img">
+
+        <div class="cover-content">
+            <p class="subtitle">The Wedding Of</p>
+            <h1 class="couple-names-cover">Widy<br><span class="couple-ampersand">&amp;</span><br>Riswar</h1>
+        </div>
+
+        <div class="guest-greeting"
+            style="position: fixed; bottom: 12%; left: 50%; transform: translateX(-50%); z-index: 100; text-align: center; color: var(--text-main); width: 80%; background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(5px); padding: 10px; border-radius: 15px; border: 1px solid var(--gold);">
+            <p style="font-size: 0.8rem; margin-bottom: 3px; font-weight: 500;">Kepada Yth. Bapak/Ibu/Saudara/i:</p>
+            <h3 id="guestName"
+                style="font-size: 1.25rem; font-family: var(--font-heading); color: var(--primary-color); margin: 0; word-wrap: break-word;">
+                Tamu Undangan</h3>
+        </div>
+
+        <button id="openInvitation" class="btn-primary cover-btn-bottom" style="bottom: 4%;">Buka Undangan</button>
+    </div>
+
+    <!-- Main Invitation Content -->
+    <main id="mainContent" class="hidden">
+        <!-- Background Blobs for modern fluid morphology -->
+        <div class="morph-blob blob-1"></div>
+        <div class="morph-blob blob-2"></div>
+        <div class="morph-blob blob-3"></div>
+
+        <!-- Hero Section -->
+        <section id="hero" class="hero-section">
+            <div class="hero-text">
+                <div data-aos="fade-right" data-aos-duration="1500"
+                    style="margin-top: 10px; position: relative; z-index: 20;">
+                    <p class="invite-subtitle hero-music-anim-1">You Are Invited To <br><span class="wedding-of">The
+                            Wedding Of</span></p>
+                </div>
+
+                <div data-aos="zoom-in" data-aos-duration="1800" data-aos-delay="200">
+                    <div class="image-wrapper hero-music-anim-2" style="margin: -90px 0 0px 0;">
+                        <img src="bg22.png" alt="Gallery Ornament" class="hero-ornament-img">
+                    </div>
+                </div>
+
+                <div data-aos="fade-left" data-aos-duration="1500" data-aos-delay="400">
+                    <h2 class="animated-text hero-music-anim-3"
+                        style="font-family: 'Brittany Signature', cursive; font-weight: 400; font-size: clamp(2rem, 10vw, 3.5rem); white-space: nowrap; margin-top: -60px; margin-bottom: 10px; color: var(--primary-color); position: relative; z-index: 10;">
+                        Widy & Riswar</h2>
+                </div>
+
+                <div data-aos="fade-up" data-aos-duration="1200" data-aos-delay="600">
+                    <p class="date-hero hero-music-anim-4"
+                        style="font-size: 1.1rem; font-weight: 600; margin-bottom: 15px;">23 Mei 2026</p>
+                </div>
+
+                <!-- Countdown Timer -->
+                <div data-aos="fade-up" data-aos-duration="1200" data-aos-delay="800">
+                    <div class="countdown-container hero-music-anim-5">
+                        <div class="time-box"><span id="days">00</span>
+                            <p>Hari</p>
+                        </div>
+                        <div class="time-box"><span id="hours">00</span>
+                            <p>Jam</p>
+                        </div>
+                        <div class="time-box"><span id="minutes">00</span>
+                            <p>Menit</p>
+                        </div>
+                        <div class="time-box"><span id="seconds">00</span>
+                            <p>Detik</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-indicator">
+                <p>Scroll Down</p>
+                <div class="arrow-down"></div>
+            </div>
+        </section>
+
+        <!-- Couple Section -->
+        <section id="couple" class="couple-section">
+            <div class="container">
+                <div class="section-title text-center" data-aos="fade-up" data-aos-duration="1000"
+                    style="margin-bottom: 45px;">
+                    <p class="intro-text-music"
+                        style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.1rem; line-height: 1.7; color: var(--primary-color); font-weight: 400; background: linear-gradient(135deg, rgba(235, 211, 122, 0.25) 0%, rgba(255, 255, 255, 0.5) 100%); padding: 30px 20px; border-radius: 20px; margin: 0 auto; max-width: 90%; backdrop-filter: blur(4px);">
+                        "Dengan Memohon Rahmat dan Ridho Dari Allah SWT.<br>
+                        Kami Bermaksud Menyelenggarakan Syukuran Pernikahan Putra Putri Kami."
+                    </p>
+                </div>
+
+                <div class="couple-wrapper">
+                    <!-- Bride -->
+                    <div class="bride bride-card" data-aos="morph-right" data-aos-duration="1200">
+                        <div data-aos="morph-up" data-aos-duration="1200" data-aos-delay="200">
+                            <div class="photo-frame hero-music-anim-2">
+                                <div
+                                    style="width: 100%; height: 100%; overflow: hidden; border-radius: 15px; position: relative; -webkit-mask-image: linear-gradient(to bottom, black 65%, transparent 95%); mask-image: linear-gradient(to bottom, black 65%, transparent 95%);">
+                                    <img src="wanitanew.png" alt="Mempelai Wanita" class="profile-img"
+                                        style="transform: scale(0.75) translateY(5%); border-radius: 0 !important;">
+                                </div>
+                                <div class="frame-ornament"></div>
+                            </div>
+                        </div>
+                        <h3 data-aos="fade-up" data-aos-duration="800" data-aos-delay="500">Gr. Widyawati, S.Pd</h3>
+                        <p class="parents" data-aos="fade-up" data-aos-duration="800" data-aos-delay="700">Putri
+                            dari<br>Bapak Sudirman L Mariyoga & Ibu Nurlina Usman</p>
+                        <a href="#" class="social-link" data-aos="zoom-in" data-aos-duration="800"
+                            data-aos-delay="900">@wwiidyy</a>
+                    </div>
+
+
+
+                    <!-- Groom -->
+                    <div class="groom groom-card" data-aos="morph-left" data-aos-duration="1200">
+                        <div data-aos="morph-up" data-aos-duration="1200" data-aos-delay="400">
+                            <div class="photo-frame hero-music-anim-2">
+                                <div
+                                    style="width: 100%; height: 100%; overflow: hidden; border-radius: 15px; position: relative; -webkit-mask-image: linear-gradient(to bottom, black 65%, transparent 95%); mask-image: linear-gradient(to bottom, black 65%, transparent 95%);">
+                                    <img src="pria.png" alt="Mempelai Pria" class="profile-img"
+                                        style="transform: scale(1.7) translateY(18%); border-radius: 0 !important;">
+                                </div>
+                                <div class="frame-ornament"></div>
+                            </div>
+                        </div>
+                        <h3 data-aos="fade-up" data-aos-duration="800" data-aos-delay="700">Gr. Riswar Hasan, S.Pd</h3>
+                        <p class="parents" data-aos="fade-up" data-aos-duration="800" data-aos-delay="900">Putra
+                            dari<br>Bapak Hi. Hasan & Ibu Hj. Sitti Nuralam</p>
+                        <a href="#" class="social-link" data-aos="zoom-in" data-aos-duration="800"
+                            data-aos-delay="1100">@riswar_57</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Event Details Section -->
+        <section id="events" class="events-section">
+            <div class="background-pattern"></div>
+            <div class="container">
+                <div class="section-title" data-aos="fade-up" data-aos-duration="1000">
+                    <h2 class="animated-text">Rangkaian Acara</h2>
+                    <div class="divider-gold"></div>
+                    <p>Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir
+                        pada acara kami.</p>
+                </div>
+
+                <div class="event-cards">
+                    <!-- Mappacci / Tudang Penni (Optional Bugis Event) -->
+                    <div class="event-card glass" data-aos="morph-up" data-aos-delay="100" data-aos-duration="1000">
+                        <div class="event-icon">🌙</div>
+                        <h3>Akad Nikah</h3>
+                        <p class="date">Sabtu, 23 Mei 2026</p>
+                        <p class="time">10:00 WITA - Selesai</p>
+                        <p class="location">Kediaman Mempelai Wanita<br>Jl. Parenrengi No.13 (Lrg. Alfamidi Bangkir)</p>
+                    </div>
+
+                    <!-- Akad Nikah -->
+                    <div class="event-card glass highlight" data-aos="morph-up" data-aos-delay="300"
+                        data-aos-duration="1000">
+                        <div class="event-icon">💍</div>
+                        <h3>Resepsi</h3>
+                        <p class="date">Malam Minggu, 23 Mei 2026</p>
+                        <p class="time">19:00 WITA - Selesai</p>
+                        <p class="location">Kediaman Mempelai Wanita<br>Jl. Parenrengi No.13 (Lrg. Alfamidi Bangkir)</p>
+                    </div>
+
+                    <!-- Resepsi (Mappabotting) -->
+                    <div class="event-card glass" data-aos="morph-up" data-aos-delay="500" data-aos-duration="1000">
+                        <div class="event-icon">🎉</div>
+                        <h3>Mapparola</h3>
+                        <p class="date">Malam Senin, 24 Mei 2026</p>
+                        <p class="time">19:00 WITA - Selesai</p>
+                        <p class="location">Dusun Pepei<br>Desa Dongko</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Wedding Gift Section -->
+        <section id="gift" class="gift-section">
+            <div class="container">
+                <div class="section-title" data-aos="fade-up" data-aos-duration="1000">
+                    <h2 class="animated-text"
+                        style="font-family: 'Brittany Signature', cursive; font-weight: normal; font-size: 3.5rem; text-transform: none;">
+                        Wedding Gift</h2>
+                    <div class="divider-gold"></div>
+                    <div class="intro-gift event-card glass highlight" data-aos="zoom-in" data-aos-duration="1000">
+                        <p style="margin: 0; padding: 0;">
+                            Doa Restu Anda Merupakan Karunia Yang Sangat Berarti Bagi Kami.<br><br>
+                            Dan Jika Memberi adalah ungkapan Tanda kasih Anda, Anda Dapat Memberi kado secara Cashless
+                        </p>
+                    </div>
+                </div>
+
+                <div class="event-card glass highlight" style="margin: 30px auto 0; display: block;" data-aos="zoom-in"
+                    data-aos-duration="1000">
+                    <div
+                        style="display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 15px;">
+                        <div class="bank-logo" style="margin: 0;">
+                            <img src="BRI.png" alt="Bank BRI"
+                                style="width: 60px; height: auto; object-fit: contain; filter: drop-shadow(0px 0px 3px rgba(255,255,255,0.5));">
+                        </div>
+                        <div style="text-align: left;">
+                            <p class="bank-account"
+                                style="font-size: 1.05rem; margin: 0; color: #000; font-weight: bold; text-shadow: 0 0 3px rgba(255,255,255,0.5);">
+                                022701061704504</p>
+                            <p class="bank-name"
+                                style="font-size: 0.85rem; color: #333; margin: 3px 0 0 0; text-shadow: 0 0 3px rgba(255,255,255,0.5);">
+                                a.n WIDYAWATI</p>
+                        </div>
+                    </div>
+                    <div style="text-align: center;">
+                        <button class="btn-primary copy-btn"
+                            onclick="navigator.clipboard.writeText('022701061704504').then(()=>{alert('Nomor rekening berhasil disalin!');}); return false;"
+                            style="font-size: 0.85rem; padding: 10px 20px; width: 100%;">Salin Rekening</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Wishes / Guestbook Section -->
+        <section id="wishes" class="wishes-section">
+            <div class="container">
+                <div class="section-title" data-aos="fade-up" data-aos-duration="1000">
+                    <h2 class="animated-text"
+                        style="font-family: 'Brittany Signature', cursive; font-weight: normal; font-size: 3.5rem; text-transform: none;">
+                        Kirim Ucapan</h2>
+                    <div class="divider-gold"></div>
+                    <p
+                        style="color: var(--text-main); font-weight: 500; text-shadow: 0 0 5px rgba(255,255,255,0.7); margin-top: 10px;">
+                        Tuliskan doa dan harapan untuk kedua mempelai</p>
+                </div>
+
+                <div class="event-card glass highlight wishes-card" data-aos="zoom-in" data-aos-duration="1000"
+                    style="margin: 0 auto; display: block; max-width: 400px; padding: 25px 20px;">
+                    <form id="wishesForm" class="wishes-form">
+                        <div class="form-group">
+                            <input type="text" id="wishName" placeholder="Nama Anda" required class="wish-input">
+                        </div>
+                        <div class="form-group">
+                            <textarea id="wishMessage" placeholder="Tuliskan ucapan dan doa..." required rows="4"
+                                class="wish-input"></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary wishes-btn">Kirim Pesan</button>
+                    </form>
+
+                    <div class="wishes-list-container">
+                        <div id="wishesList" class="wishes-list">
+                            <!-- JS akan mengisi pesan disini -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer / Outro -->
+        <footer class="footer">
+            <div class="footer-content">
+                <p>Merupakan suatu kehormatan dan kebahagiaan bagi kami, apabila Bapak/Ibu/Saudara/i berkenan hadir
+                    untuk memberikan doa restu.</p>
+                <h3>Widy & Riswar</h3>
+                <p class="credit">Built with ❤️ by WarDigital</p>
+                <div class="vendor-contacts" style="margin-top: 15px; font-size: 0.85rem;">
+                    <p style="margin-bottom: 8px; color: var(--gold); font-weight: 600;">Pesan Undangan Digital:</p>
+                    <a href="https://wa.me/6281325288213" target="_blank" class="vendor-link"
+                        style="color: var(--text-light); text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 6px; margin: 5px 10px; transition: color 0.3s ease;">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M11.996 0A12.003 12.003 0 0 0 0 12.003c0 2.115.548 4.17 1.588 5.968l-1.554 5.672 5.804-1.523a11.968 11.968 0 0 0 6.158 1.688h.005C23.953 23.808 24 18.529 24 12.005A12.005 12.005 0 0 0 11.996 0zm0 21.794h-.003a9.976 9.976 0 0 1-5.088-1.39l-.364-.216-3.784.992 1.01-3.692-.237-.376A9.957 9.957 0 0 1 1.998 12.002c0-5.518 4.49-10.008 10.004-10.008 2.674 0 5.184 1.042 7.073 2.932 1.892 1.89 2.934 4.4 2.934 7.078 0 5.517-4.492 10.008-10.013 10.006v-.016h.001zm5.485-7.5c-.302-.15-1.782-.878-2.058-.98-.276-.102-.477-.15-.678.15s-.777.978-.953 1.178c-.175.2-.35.226-.652.076a8.214 8.214 0 0 1-2.42-1.493 9.077 9.077 0 0 1-1.677-2.083c-.176-.3-.018-.466.133-.616.136-.134.3-.3.45-.45s.2-.3.3-.5c.102-.2.05-.376-.025-.526-.075-.15-.678-1.63-.928-2.23-.243-.586-.488-.507-.678-.515a3.177 3.177 0 0 0-.58-.008c-.2 0-.528.076-.803.376s-1.054 1.03-1.054 2.508c0 1.48 1.08 2.912 1.23 3.113.152.2 2.124 3.242 5.143 4.544 2.115.912 2.87.822 3.396.685.584-.153 1.782-.728 2.032-1.43s.25-1.302.175-1.43c-.075-.126-.276-.2-.578-.35z" />
+                        </svg>
+                        081325288213
+                    </a>
+                    <a href="https://instagram.com/war.digital_" target="_blank" class="vendor-link"
+                        style="color: var(--text-light); text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 6px; margin: 5px 10px; transition: color 0.3s ease;">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.344 3.608 1.318.975.975 1.256 2.242 1.318 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.344 2.633-1.318 3.608-.975.975-2.242 1.256-3.608 1.318-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.344-3.608-1.318-.975-.975-1.256-2.242-1.318-3.608-.058-1.266-.07-1.646-.07-4.85s.012-3.584.07-4.85c.062-1.366.344-2.633 1.318-3.608.975-.975 2.242-1.256 3.608-1.318 1.266-.058 1.646-.07 4.85-.07M12 0C8.741 0 8.333.014 7.053.072 2.695.272.272 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z" />
+                        </svg>
+                        @war.digital_
+                    </a>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <!-- Audio Element -->
+    <audio id="bg-music" src="musikkkk.mp3" loop preload="auto"></audio>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

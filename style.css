@@ -1,0 +1,1003 @@
+:root {
+    /* Wedding Theme Palette - Burgundy, Forest Green & Butter Yellow */
+    --burgundy: #4A1B22; 
+    --dusty-rose: #A34E57;
+    --forest-green: #1B3B2F; /* Deep rich green from video */
+    --olive-green: #687E45;
+    --butter-yellow: #FFF8B5;
+
+    --primary-color: var(--burgundy);
+    --primary-light: var(--dusty-rose);
+    --gold: #D4AF37; /* Metallic Gold for arches */
+    --gold-light: #F3E5AB;
+    --text-main: #2F1116;
+    --text-light: var(--butter-yellow);
+    --bg-light: var(--butter-yellow);
+    --bg-dark: var(--forest-green);
+    
+    /* Fonts */
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Inter', sans-serif;
+    --font-accent: 'Cinzel', serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    background-color: #1F0B0E; /* Dark elegant backdrop for desktop */
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--bg-light);
+    color: var(--text-main);
+    overflow-x: hidden;
+    line-height: 1.6;
+    width: 100%;
+    max-width: 480px; /* Lock to mobile/Android view */
+    margin: 0 auto;
+    position: relative;
+    box-shadow: 0 0 50px rgba(0,0,0,0.5); /* Edge shadows */
+    min-height: 100vh;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Typography */
+h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.bismillah, .lontara-greeting {
+    font-size: 1.5rem;
+    color: var(--gold);
+    text-align: center;
+    margin-bottom: 10px;
+    font-family: var(--font-accent);
+}
+
+.lontara-greeting {
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+}
+
+/* Utilities */
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.section-title h2 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+}
+
+.divider-gold {
+    height: 3px;
+    width: 60px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 15px auto;
+}
+
+.glass {
+    background: rgba(254, 243, 213, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(254, 243, 213, 0.4);
+    box-shadow: 0 8px 32px 0 rgba(74, 27, 34, 0.1);
+}
+
+/* Buttons */
+.btn-primary, .btn-secondary {
+    display: inline-block;
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-family: var(--font-body);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--dusty-rose), var(--burgundy));
+    color: var(--ivory);
+    box-shadow: 0 4px 15px rgba(163, 78, 87, 0.4);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(163, 78, 87, 0.6);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+}
+
+.btn-secondary:hover {
+    background: var(--primary-color);
+    color: #fff;
+}
+
+/* ========= SECTIONS ========= */
+
+/* Cover Section */
+.cover-section {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 480px;
+    height: 100vh;
+    height: 100dvh; /* dynamic viewport for mobile */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    color: var(--text-main);
+    transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
+    overflow: hidden;
+}
+
+.cover-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('bg1new.jpg') center/cover no-repeat;
+    z-index: 1;
+    transform: scale(var(--beat-scale, 1));
+}
+
+/* Animasi Musik Khusus Hero Section */
+@keyframes musicPulseFloat {
+    0%, 50%, 100% { transform: translateY(0) scale(1); }
+    20% { transform: translateY(-5px) scale(1.03); }
+    70% { transform: translateY(3px) scale(0.98); }
+}
+
+@keyframes musicPulseRotate {
+    0%, 50%, 100% { transform: scale(1) rotate(0deg); }
+    25% { transform: scale(1.05) rotate(2deg); }
+    75% { transform: scale(0.97) rotate(-2deg); }
+}
+
+@keyframes musicPulseScale {
+    0%, 100% { transform: scale(1); }
+    40% { transform: scale(1.04); }
+}
+
+.playing-music .hero-music-anim-1 { animation: musicPulseFloat 1.8s infinite ease-in-out; }
+.playing-music .hero-music-anim-2 { animation: musicPulseRotate 1.8s infinite ease-in-out 0.2s; }
+.playing-music .hero-music-anim-3 { animation: musicPulseFloat 1.8s infinite ease-in-out 0.4s; }
+.playing-music .hero-music-anim-4 { animation: musicPulseScale 1.8s infinite ease-in-out 0.6s; }
+.playing-music .hero-music-anim-5 { animation: musicPulseFloat 1.8s infinite ease-in-out 0.8s; }
+
+.simulated-beat-bg {
+    animation: fakeBeatBg 1.8s infinite;
+}
+@keyframes fakeBeatBg {
+    0%, 30%, 100% { transform: scale(1); }
+    15% { transform: scale(1.05); }
+    45% { transform: scale(1.02); }
+}
+
+.simulated-beat-img {
+    animation: fakeBeatImg 1.8s infinite;
+}
+@keyframes fakeBeatImg {
+    0%, 30%, 100% { transform: translateX(-50%) scale(1); }
+    15% { transform: translateX(-50%) scale(1.03); }
+    45% { transform: translateX(-50%) scale(1.01); }
+}
+
+.simulated-beat-content {
+    animation: fakeBeatContent 1.8s infinite;
+}
+@keyframes fakeBeatContent {
+    0%, 30%, 100% { transform: translate(-50%, -50%) scale(1); }
+    15% { transform: translate(-50%, -50%) scale(1.03); }
+    45% { transform: translate(-50%, -50%) scale(1.01); }
+}
+
+.simulated-beat-btn {
+    animation: fakeBeatBtn 1.8s infinite;
+}
+@keyframes fakeBeatBtn {
+    0%, 30%, 100% { transform: translateX(-50%) scale(1); }
+    15% { transform: translateX(-50%) scale(1.05); }
+    45% { transform: translateX(-50%) scale(1.02); }
+}
+
+.music-hint {
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(27, 59, 47, 0.7); /* Forest green transparan */
+    color: var(--text-light);
+    padding: 8px 20px;
+    border-radius: 30px;
+    font-size: 0.85rem;
+    z-index: 100;
+    animation: floatingText 2s infinite;
+    pointer-events: none;
+    border: 1px solid var(--gold);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.cover-section.slide-up {
+    transform: translate(-50%, -100%);
+}
+
+.cover-content {
+    text-align: center;
+    padding: 10px;
+    background: transparent;
+    border: none;
+    width: 400px;
+    max-width: 90%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    animation: coverZoomIn 1.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+@keyframes coverZoomIn {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.6);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+.cover-mempelai-img {
+    position: absolute;
+    bottom: 15%; /* Push image slightly up so it's not hidden by the text box */
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+    max-height: 65%;
+    z-index: 2;
+    mix-blend-mode: multiply;
+    filter: contrast(1.1);
+}
+
+.cover-content .subtitle {
+    font-family: var(--font-accent);
+    color: var(--primary-color);
+    letter-spacing: 5px;
+    margin-bottom: 45px;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    text-shadow: 0px 0px 8px rgba(255,255,255,0.9);
+}
+
+.couple-names-cover {
+    font-family: 'Brittany Signature', cursive;
+    font-weight: normal;
+    font-size: 3.5rem;
+    color: var(--primary-color);
+    margin: 0;
+    line-height: 1.1;
+    filter: drop-shadow(0px 0px 10px rgba(255,255,255,0.9));
+    animation: floatingText 4s ease-in-out infinite;
+}
+
+.couple-ampersand {
+    font-family: var(--font-accent);
+    font-size: 2.2rem;
+    color: var(--gold);
+    display: inline-block;
+    margin: 10px 0;
+}
+
+#openInvitation.cover-btn-bottom {
+    position: fixed;
+    bottom: 5%; /* Posisi absolute paling bawah */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    padding: 10px 25px;
+    font-size: 0.95rem;
+    background: rgba(255, 192, 203, 0.8) !important; /* Warna pink transparan */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: var(--primary-color) !important; /* Warna burgundy agar kontras */
+    border: 1.5px solid var(--gold);
+    white-space: nowrap;
+}
+
+/* Hero Section */
+.hero-section {
+    min-height: 100vh;
+    padding: 60px 0 100px 0; /* Ruang lebih untuk menampung teks, mencegah scroll panah menabrak tulisan */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: url('bg2new.jpg') center/cover no-repeat;
+    position: relative;
+}
+
+.hero-text {
+    background: transparent;
+    padding: 15px 25px; /* Mengurangi padding raksasa yang tidak terlihat yang mencekik ukuran gambar */
+    border-radius: 30px;
+    width: 100%;
+}
+
+.hero-text h2 {
+    font-size: 3rem;
+    margin: 20px 0;
+    color: var(--primary-color);
+}
+
+.invite-subtitle {
+    font-family: var(--font-body);
+    color: var(--primary-color);
+    letter-spacing: 4px;
+    margin-bottom: 5px;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    line-height: 1.6;
+}
+
+.wedding-of {
+    font-family: var(--font-accent);
+    font-size: 1.4rem;
+    letter-spacing: 2px;
+    color: var(--gold);
+    display: inline-block;
+    margin-top: 5px;
+}
+
+/* Styling Gambar tanpa latar (auto cut out background putih) */
+.hero-ornament-img {
+    height: auto;
+    width: 100%; /* Bisa melebar memakan keseluruhan ruang layar yang tersisa */
+    max-width: 380px; /* Batas wajar di HP */
+    object-fit: contain; /* GARANSI ANTI GEPENG! Selalu pertahankan rasio aspeknya */
+    margin: 0 auto;
+    display: block;
+    mix-blend-mode: multiply; 
+    filter: contrast(1.15) brightness(0.95);
+    
+    /* Trik menyamarkan potongan kaki keras menjadi gradasi pudar menyatu dengan background */
+    -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+    
+    /* Animasi pergerakan detak khusus di-handle oleh animasi ketukan JS */
+}
+
+/* Styling Countdown */
+.countdown-container {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.time-box {
+    background: rgba(255, 248, 181, 0.45);
+    border: 1.5px solid var(--gold);
+    border-radius: 12px;
+    padding: 10px 0;
+    min-width: 65px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.time-box span {
+    display: block;
+    font-size: 1.6rem;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    color: var(--burgundy);
+}
+
+.time-box p {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 5px 0 0 0;
+    color: var(--dusty-rose);
+    font-weight: 600;
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 30px;
+    animation: bounce 2s infinite;
+}
+
+.arrow-down {
+    width: 20px;
+    height: 20px;
+    border-right: 2px solid var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+    transform: rotate(45deg);
+    margin: 10px auto 0;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-15px); }
+    60% { transform: translateY(-7px); }
+}
+
+/* Couple Section */
+.couple-section {
+    padding: 100px 0 150px 0; /* Padding bawah ekstra untuk menghindari tumpukan padat bunga di area dasar */
+    background: url('bg3new.jpg') center/cover no-repeat;
+    position: relative;
+    color: var(--text-main);
+}
+
+.couple-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    flex-wrap: wrap;
+}
+
+.couple-card, .groom-card, .bride-card {
+    text-align: center;
+    max-width: 320px;
+    /* Sangkar kaca (Glass Shield) proteksi anti tabrakan motif */
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.4) 100%);
+    padding: 30px 20px;
+    border-radius: 25px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1.5px solid rgba(255, 255, 255, 0.9);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+}
+
+.photo-frame {
+    width: 280px;
+    height: 380px;
+    margin: 0 auto 20px;
+    position: relative;
+    background: #fff;
+    border-radius: 15px;
+    padding: 10px;
+    border: none;
+    transition: transform 0.6s ease, box-shadow 0.6s ease, border-color 0.6s ease;
+    cursor: pointer;
+}
+
+/* Trik Sihir CSS: Bingkai JPG ditindihkan menggunakan blend-mode dari atas */
+.photo-frame::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: url('bingkaibaru (2).jpg') center/cover no-repeat;
+    mix-blend-mode: multiply;
+    border-radius: 15px;
+    pointer-events: none; /* Memastikan interaksi klik kursor tembus ke foto */
+}
+
+.photo-frame:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+    border-color: var(--dusty-rose);
+}
+
+.bride-card h3, .groom-card h3 {
+    font-family: 'Brittany Signature', cursive;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1.6rem;
+    white-space: nowrap;
+    margin: 10px 0 10px 0;
+    color: var(--burgundy);
+    padding: 10px 0;
+    line-height: 1.3;
+    letter-spacing: 1px;
+    filter: drop-shadow(0px 1px 2px rgba(0,0,0,0.1));
+}
+
+.profile-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0 !important;
+    transition: transform 0.8s cubic-bezier(0.2, 1, 0.3, 1), filter 0.8s ease;
+    filter: sepia(20%) grayscale(15%) brightness(0.95);
+}
+
+.photo-frame:hover .profile-img {
+    transform: scale(1.05);
+    filter: sepia(0%) grayscale(0%) brightness(1.05);
+}
+
+.parents {
+    font-size: 0.9rem;
+    color: #666;
+    margin: 10px 0;
+}
+
+.ampersand {
+    font-size: 4rem;
+    font-family: var(--font-heading);
+    color: var(--gold);
+}
+
+/* Events Section */
+.events-section {
+    padding: 30px 0 100px 0;
+    background: url('bgrang.jpg') center/cover no-repeat;
+    color: var(--text-light);
+    position: relative;
+    overflow: hidden;
+}
+
+.events-section .section-title h2 {
+    color: var(--text-light);
+}
+
+.events-section .section-title p {
+    color: #000;
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    padding: 12px 20px;
+    border-radius: 15px;
+    margin: 0 auto;
+    font-weight: 500;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.event-cards {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 2;
+}
+
+.event-card {
+    flex: 1;
+    min-width: 280px;
+    max-width: 350px;
+    padding: 60px 40px;
+    border-radius: 125px 125px 20px 20px; /* Follows arch framework */
+    border: 3px solid var(--gold);
+    background: rgba(255, 255, 255, 0.15);
+    color: var(--text-main);
+    backdrop-filter: blur(10px);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.event-card:hover {
+    transform: translateY(-10px);
+}
+
+.event-card h3 {
+    font-family: 'Brittany Signature', cursive;
+    font-weight: normal;
+    color: var(--primary-color);
+    margin: 15px 0;
+    font-size: 2.2rem;
+}
+
+.event-card.highlight {
+    background: rgba(255, 248, 181, 0.25);
+    color: var(--text-main);
+    transform: scale(1.05);
+}
+
+.event-card.highlight h3 {
+    color: var(--primary-color);
+}
+
+.event-icon {
+    font-size: 3rem;
+}
+
+/* Wedding Gift Section */
+.gift-section {
+    padding: 100px 0 100px 0; 
+    background: url('bg5new.jpg') top center/cover no-repeat; 
+    color: var(--text-main);
+    position: relative;
+    text-align: center;
+}
+
+.intro-gift {
+    margin: 250px auto 30px; /* Margin atas agar teks turun, margin bawah untuk jarak ke rekening */
+    font-weight: 500;
+    line-height: 1.6;
+    display: block; /* Agar margin auto bekerja untuk centering jika di dalam container lain */
+}
+
+.gift-card {
+    max-width: 260px;
+    margin: 30px auto 0;
+    padding: 25px 20px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.85);
+    border: 2px solid var(--gold);
+    color: var(--text-main);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.bank-logo {
+    margin-bottom: 20px;
+}
+
+.bank-account {
+    font-size: 1.3rem;
+    font-family: var(--font-body);
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin: 10px 0;
+    color: var(--burgundy);
+}
+
+.bank-name {
+    font-size: 1rem;
+    margin-bottom: 25px;
+    color: #555;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.copy-btn {
+    font-size: 0.9rem;
+    padding: 12px 25px;
+    border-radius: 50px;
+    width: 100%;
+}
+
+/* Wishes / Guestbook Section */
+.wishes-section {
+    padding: 100px 0 100px 0;
+    background: url('bg4.jpg') center/cover no-repeat;
+    position: relative;
+    color: var(--text-main);
+    text-align: center;
+}
+
+.wishes-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(255, 255, 255, 0.4); /* Slight overlay to ensure form is readable */
+    z-index: 1;
+}
+
+.wishes-section .container {
+    position: relative;
+    z-index: 2;
+}
+
+.wishes-form {
+    margin-bottom: 25px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.wish-input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1.5px solid var(--gold);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.7);
+    color: var(--text-main);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.wish-input:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+}
+
+.wishes-btn {
+    width: 100%;
+    margin-top: 5px;
+}
+
+.wishes-list-container {
+    max-height: 250px;
+    overflow-y: auto;
+    border-top: 1px solid rgba(212, 175, 55, 0.5);
+    padding-top: 15px;
+    margin-top: 15px;
+    text-align: left;
+}
+
+/* Custom Scrollbar for wishes */
+.wishes-list-container::-webkit-scrollbar {
+    width: 5px;
+}
+.wishes-list-container::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+}
+.wishes-list-container::-webkit-scrollbar-thumb {
+    background: var(--gold);
+    border-radius: 10px;
+}
+
+.wish-item {
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 12px;
+    padding: 12px 15px;
+    margin-bottom: 12px;
+    border-left: 4px solid var(--primary-color);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.wish-name {
+    font-weight: 700;
+    color: var(--primary-color);
+    font-size: 0.95rem;
+    margin-bottom: 3px;
+}
+
+.wish-time {
+    font-size: 0.7rem;
+    color: #888;
+    margin-bottom: 6px;
+    display: block;
+}
+
+.wish-text {
+    font-size: 0.9rem;
+    color: #444;
+    line-height: 1.4;
+}
+
+/* Footer */
+.footer {
+    background-color: #2F1116; /* Deep Burgundy Profile */
+    color: var(--text-light);
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.footer h3 {
+    color: var(--gold);
+    font-size: 2rem;
+    margin: 20px 0;
+}
+
+.credit {
+    font-size: 0.8rem;
+    opacity: 0.7;
+    margin-top: 40px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .couple-wrapper {
+        flex-direction: column;
+    }
+    
+    .ampersand {
+        flex-basis: 100%;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        margin: 20px 0;
+    }
+    
+    .event-card.highlight {
+        transform: scale(1);
+    }
+}
+
+/* --- Animated Text Effects --- */
+.animated-text {
+    background: linear-gradient(270deg, var(--burgundy), var(--dusty-rose), var(--olive-green), var(--dusty-rose), var(--burgundy));
+    background-size: 300% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: textGradientFlow 6s ease-in-out infinite, floatingText 4s ease-in-out infinite;
+    display: inline-block;
+}
+
+.animated-text-gold {
+    background: linear-gradient(270deg, var(--gold), var(--gold-light), var(--gold));
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: textGradientFlow 4s ease-in-out infinite;
+    display: inline-block;
+}
+
+@keyframes textGradientFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes floatingText {
+    0%, 100% { transform: scale(1) translateY(0); }
+    50% { transform: scale(1.05) translateY(-5px); }
+}
+
+/* --- Modern Morph Animations --- */
+
+/* Background Blobs for fluidity */
+.morph-blob {
+    display: none; /* Dihilangkan agar tidak menghalangi gambar background */
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(80px);
+    z-index: 0;
+    opacity: 0.5;
+    animation: liquidBlob 20s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+}
+.blob-1 {
+    top: 5%; right: 5%;
+    width: 40vw; height: 40vw;
+    background: var(--dusty-rose);
+    animation-duration: 25s;
+}
+.blob-2 {
+    bottom: -10%; left: -5%;
+    width: 50vw; height: 45vw;
+    background: var(--olive-green);
+    animation-duration: 22s;
+    animation-delay: 2s;
+}
+.blob-3 {
+    top: 40%; left: 30%;
+    width: 35vw; height: 35vw;
+    background: var(--baby-pink);
+    animation-duration: 18s;
+    animation-delay: 5s;
+}
+
+@keyframes liquidBlob {
+    0% { transform: scale(1) translate(0, 0) rotate(0deg); border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+    50% { transform: scale(1.1) translate(30px, 60px) rotate(180deg); border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+    100% { transform: scale(0.9) translate(-30px, -30px) rotate(360deg); border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+}
+
+/* Custom Morph Transitions for Scroll (AOS integration) */
+[data-aos="morph-card"] {
+    opacity: 0;
+    transform: translateY(60px) scale(0.85);
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    transition-property: transform, opacity, border-radius;
+}
+[data-aos="morph-card"].aos-animate {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    border-radius: 30px;
+}
+
+[data-aos="morph-up"] {
+    opacity: 0;
+    transform: translateY(100px) scale(0.9);
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+    transition-property: transform, opacity, border-radius;
+}
+[data-aos="morph-up"].aos-animate {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    border-radius: 20px;
+}
+
+[data-aos="morph-right"] {
+    opacity: 0;
+    transform: translateX(-100px) scale(0.9);
+    border-radius: 70% 30% 30% 70% / 60% 40% 60% 40%;
+    transition-property: transform, opacity, border-radius;
+}
+[data-aos="morph-right"].aos-animate {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    border-radius: 20px;
+}
+
+[data-aos="morph-left"] {
+    opacity: 0;
+    transform: translateX(100px) scale(0.9);
+    border-radius: 30% 70% 70% 30% / 40% 60% 40% 60%;
+    transition-property: transform, opacity, border-radius;
+}
+[data-aos="morph-left"].aos-animate {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    border-radius: 20px;
+}
+
+/* --- Tarian Menyesuaikan Musik (Mempelai Slide) --- */
+.intro-text-music {
+    border: 1.5px solid rgba(235, 211, 122, 0.8);
+    box-shadow: 0 15px 30px rgba(235, 211, 122, 0.25);
+    transition: all 0.5s ease;
+}
+
+body.playing-music .intro-text-music {
+    animation: introMusicBeat 3.5s infinite ease-in-out alternate;
+}
+
+@keyframes introMusicBeat {
+    0% { transform: translateY(0); box-shadow: 0 15px 30px rgba(235, 211, 122, 0.25); border-color: rgba(235, 211, 122, 0.8); }
+    100% { transform: translateY(-7px) scale(1.02); box-shadow: 0 25px 45px rgba(235, 211, 122, 0.6); border-color: rgba(255, 225, 120, 1); }
+}
+
+/* Frame photo disetel khusus melalui class index "hero-music-anim-2" agar identik dengan slide utama */
+
+/* Efek aurora pada kaca card */
+body.playing-music .bride-card, 
+body.playing-music .groom-card {
+    position: relative;
+    overflow: hidden;
+}
+
+body.playing-music .bride-card::before,
+body.playing-music .groom-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    border-radius: inherit;
+    box-shadow: inset 0 0 0 rgba(235, 211, 122, 0);
+    transition: all 0.5s;
+    animation: cardAurora 3s infinite ease-in-out alternate;
+    pointer-events: none;
+    z-index: -1;
+}
+
+@keyframes cardAurora {
+    0% { box-shadow: inset 0 0 10px rgba(235, 211, 122, 0); }
+    100% { box-shadow: inset 0 0 60px rgba(235, 211, 122, 0.8); }
+}
