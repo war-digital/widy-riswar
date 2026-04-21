@@ -143,6 +143,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Wishes Form Logic ---
     const wishesForm = document.getElementById('wishesForm');
     const wishesList = document.getElementById('wishesList');
+    // Web App URL dari pengguna
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyE9MPOidv7BvEftHRTDLw7dTn1p-Ff_D_F-iJp9FyhNkvsVLDGIwzieeC9EfGz0yMj_g/exec';
 
     // Mencegah XSS basic
     function escapeHtml(unsafe) {
@@ -154,74 +156,90 @@ document.addEventListener('DOMContentLoaded', () => {
              .replace(/'/g, "&#039;");
     }
 
-    function loadWishes() {
+    async function loadWishes() {
         if (!wishesList) return;
         
-        const storedWishes = localStorage.getItem('weddingWishes_WidyRiswar');
-        // Data default agar terlihat tidak kosong
-        const defaultWishes = [
-            { name: "Keluarga Besar Bpk. Sudirman", message: "Selamat menempuh hidup baru Widy & Riswar. Semoga menjadi keluarga yang sakinah, mawaddah, warahmah.", time: new Date().toISOString() }
-        ];
+        wishesList.innerHTML = '<div style="text-align: center; padding: 20px; font-style: italic; color: #555;">Memuat pesan tamu...</div>';
         
-        let wishes = storedWishes ? JSON.parse(storedWishes) : defaultWishes;
-        
-        wishesList.innerHTML = '';
-        
-        // Tampilkan dari pesan yang paling baru di atas
-        [...wishes].reverse().forEach(wish => {
-            const date = new Date(wish.time);
-            const timeString = date.toLocaleDateString("id-ID", { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+        try {
+            const response = await fetch(SCRIPT_URL);
+            let wishes = await response.json();
             
-            const wishHtml = `
-                <div class="wish-item">
-                    <div class="wish-name">${escapeHtml(wish.name)}</div>
-                    <span class="wish-time">${timeString}</span>
-                    <div class="wish-text">${escapeHtml(wish.message)}</div>
-                </div>
-            `;
-            wishesList.innerHTML += wishHtml;
-        });
+            wishesList.innerHTML = '';
+            
+            // Jika data dari Google Sheets kosong, tampilkan pesan default
+            if (!wishes || wishes.length === 0) {
+                wishes = [
+                    { name: "Keluarga Besar Bpk. Sudirman", message: "Selamat menempuh hidup baru Widy & Riswar. Semoga menjadi keluarga yang sakinah, mawaddah, warahmah.", time: new Date().toISOString() }
+                ];
+            }
+            
+            // Tampilkan dari pesan yang paling baru di atas
+            [...wishes].reverse().forEach(wish => {
+                const date = new Date(wish.time);
+                let timeString = '';
+                if (!isNaN(date.getTime())) {
+                    timeString = date.toLocaleDateString("id-ID", { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+                }
+                
+                const wishHtml = `
+                    <div class="wish-item">
+                        <div class="wish-name">${escapeHtml(wish.name)}</div>
+                        <span class="wish-time">${timeString}</span>
+                        <div class="wish-text">${escapeHtml(wish.message)}</div>
+                    </div>
+                `;
+                wishesList.innerHTML += wishHtml;
+            });
+        } catch (error) {
+            console.error('Terjadi kesalahan saat memuat pesan:', error);
+            wishesList.innerHTML = '<div style="text-align: center; padding: 20px; color: #800020;">Gagal memuat pesan. Pastikan Anda terkoneksi dengan internet.</div>';
+        }
     }
 
     if (wishesForm) {
         loadWishes();
         
-        wishesForm.addEventListener('submit', (e) => {
+        wishesForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             
             const nameInput = document.getElementById('wishName').value;
             const messageInput = document.getElementById('wishMessage').value;
+            const submitBtn = wishesForm.querySelector('button');
             
             if (!nameInput.trim() || !messageInput.trim()) return;
             
-            wishesForm.querySelector('button').innerText = 'Mengirim...';
+            submitBtn.innerText = 'Mengirim...';
+            submitBtn.disabled = true;
+            submitBtn.style.opacity = '0.7';
             
-            // Simulasi delay seolah mengirim ke server
-            setTimeout(() => {
-                const storedWishes = localStorage.getItem('weddingWishes_WidyRiswar');
-                let wishes = storedWishes ? JSON.parse(storedWishes) : [
-                    { name: "Keluarga Besar Bpk. Sudirman", message: "Selamat menempuh hidup baru Widy & Riswar. Semoga menjadi keluarga yang sakinah, mawaddah, warahmah.", time: new Date().toISOString() }
-                ];
-                
-                wishes.push({
-                    name: nameInput,
-                    message: messageInput,
-                    time: new Date().toISOString()
+            try {
+                // Mengirim data ke Google Sheets
+                await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    body: JSON.stringify({ name: nameInput, message: messageInput }),
+                    // Menggunakan text/plain agar tidak terblokir peraturan CORS di browser
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' }
                 });
                 
-                localStorage.setItem('weddingWishes_WidyRiswar', JSON.stringify(wishes));
-                
-                // Reset form
+                // Reset kolom pengisian
                 wishesForm.reset();
-                wishesForm.querySelector('button').innerText = 'Kirim Pesan';
                 
-                // Reload list
-                loadWishes();
+                // Tampilkan pesan baru yang baru saja masuk (memuat ulang daftar)
+                await loadWishes();
                 
-                // Scroll list ke atas untuk tunjukkan pesan baru
+                // Otomatis geser/scroll daftar pesan ke paling atas
                 const container = document.querySelector('.wishes-list-container');
                 if (container) container.scrollTop = 0;
-            }, 600);
+            } catch (error) {
+                console.error('Terjadi kesalahan saat mengirim pesan:', error);
+                alert('Gagal mengirim pesan. Silakan periksa koneksi internet Anda dan coba lagi.');
+            } finally {
+                // Kembalikan status tombol seperti semula
+                submitBtn.innerText = 'Kirim Pesan';
+                submitBtn.disabled = false;
+                submitBtn.style.opacity = '1';
+            }
         });
     }
 
