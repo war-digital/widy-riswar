@@ -144,7 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const wishesForm = document.getElementById('wishesForm');
     const wishesList = document.getElementById('wishesList');
     // Web App URL dari pengguna
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyE9MPOidv7BvEftHRTDLw7dTn1p-Ff_D_F-iJp9FyhNkvsVLDGIwzieeC9EfGz0yMj_g/exec';
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyI3tihTwv7q9bfig4J5tn-U6AWU-NRKiwWtwCZ_JWUayWo_ElhzuafwcAyBgnRTAmAFA/exec';
 
     // Mencegah XSS basic
     function escapeHtml(unsafe) {
@@ -163,30 +163,72 @@ document.addEventListener('DOMContentLoaded', () => {
         
         try {
             const response = await fetch(SCRIPT_URL);
-            let wishes = await response.json();
+            let wishesData = await response.json();
             
             wishesList.innerHTML = '';
             
             // Jika data dari Google Sheets kosong, tampilkan pesan default
-            if (!wishes || wishes.length === 0) {
-                wishes = [
+            if (!wishesData || wishesData.length === 0) {
+                wishesData = [
                     { name: "Keluarga Besar Bpk. Sudirman", message: "Selamat menempuh hidup baru Widy & Riswar. Semoga menjadi keluarga yang sakinah, mawaddah, warahmah.", time: new Date().toISOString() }
                 ];
             }
             
+            // Pisahkan pesan utama dan balasannya
+            const parents = wishesData.filter(w => !w.replyTo);
+            const replies = wishesData.filter(w => w.replyTo);
+            
+            // Kelompokkan balasan berdasarkan ID induk (time)
+            const repliesMap = {};
+            replies.forEach(r => {
+                if(!repliesMap[r.replyTo]) repliesMap[r.replyTo] = [];
+                repliesMap[r.replyTo].push(r);
+            });
+            
             // Tampilkan dari pesan yang paling baru di atas
-            [...wishes].reverse().forEach(wish => {
+            [...parents].reverse().forEach(wish => {
                 const date = new Date(wish.time);
                 let timeString = '';
                 if (!isNaN(date.getTime())) {
                     timeString = date.toLocaleDateString("id-ID", { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
                 }
                 
+                // Susun HTML untuk balasan-balasannya
+                let repliesHtml = '';
+                if(repliesMap[wish.time]) {
+                     repliesMap[wish.time].forEach(r => {
+                          const rDate = new Date(r.time);
+                          let rTimeString = !isNaN(rDate.getTime()) ? rDate.toLocaleDateString("id-ID", { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }) : '';
+                          repliesHtml += `
+                              <div class="reply-item">
+                                  <div class="wish-name" style="font-size:0.85rem;">${escapeHtml(r.name)}</div>
+                                  <span class="wish-time">${rTimeString}</span>
+                                  <div class="wish-text" style="font-size:0.85rem;">${escapeHtml(r.message)}</div>
+                              </div>
+                          `;
+                     });
+                }
+                
+                // Timestamp atau ID raw digunakan untuk referensi balasan
+                const safeId = wish.time; 
+                
                 const wishHtml = `
                     <div class="wish-item">
                         <div class="wish-name">${escapeHtml(wish.name)}</div>
                         <span class="wish-time">${timeString}</span>
                         <div class="wish-text">${escapeHtml(wish.message)}</div>
+                        
+                        <button class="reply-btn" onclick="toggleReplyForm('${safeId}')">Balas Pesan</button>
+                        
+                        <div class="replies-container">
+                             ${repliesHtml}
+                             
+                             <div class="reply-form-container" id="reply-form-${safeId}">
+                                 <input type="text" class="reply-input" id="reply-name-${safeId}" placeholder="Nama Anda" required>
+                                 <textarea class="reply-textarea" id="reply-message-${safeId}" placeholder="Tulis balasan..." rows="2" required></textarea>
+                                 <button class="reply-submit-btn" onclick="submitReply('${safeId}')">Kirim Balasan</button>
+                             </div>
+                        </div>
                     </div>
                 `;
                 wishesList.innerHTML += wishHtml;
@@ -196,6 +238,42 @@ document.addEventListener('DOMContentLoaded', () => {
             wishesList.innerHTML = '<div style="text-align: center; padding: 20px; color: #800020;">Gagal memuat pesan. Pastikan Anda terkoneksi dengan internet.</div>';
         }
     }
+
+    // Fungsi global untuk membuka dan mengirim balasan
+    window.toggleReplyForm = function(id) {
+        const form = document.getElementById(`reply-form-${id}`);
+        if(form) form.classList.toggle('active');
+    };
+
+    window.submitReply = async function(parentId) {
+        const nameInput = document.getElementById(`reply-name-${parentId}`).value;
+        const messageInput = document.getElementById(`reply-message-${parentId}`).value;
+        const btn = document.querySelector(`#reply-form-${parentId} .reply-submit-btn`);
+        
+        if(!nameInput.trim() || !messageInput.trim()) {
+            alert('Silakan isi nama dan pesan balasan terlebih dahulu.');
+            return;
+        }
+        
+        btn.innerText = 'Mengirim...';
+        btn.disabled = true;
+        btn.style.opacity = '0.6';
+        
+        try {
+            await fetch(SCRIPT_URL, {
+                method: 'POST',
+                body: JSON.stringify({ name: nameInput, message: messageInput, replyTo: parentId }),
+                headers: { 'Content-Type': 'text/plain;charset=utf-8' }
+            });
+            await loadWishes();
+        } catch(error) {
+            console.error('Gagal membalas pesan:', error);
+            alert('Gagal mengirim balasan, silakan periksa koneksi internet Anda.');
+            btn.innerText = 'Kirim Balasan';
+            btn.disabled = false;
+            btn.style.opacity = '1';
+        }
+    };
 
     if (wishesForm) {
         loadWishes();

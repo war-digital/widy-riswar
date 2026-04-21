@@ -959,6 +959,77 @@ h1, h2, h3, h4 {
     border-radius: 20px;
 }
 
+/* --- Styles for Public Replies Thread --- */
+.reply-btn {
+    font-size: 0.8rem;
+    color: var(--burgundy);
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-top: 8px;
+    padding: 0;
+    text-decoration: underline;
+    font-weight: 600;
+}
+.reply-btn:hover {
+    color: var(--dusty-rose);
+}
+.replies-container {
+    margin-left: 15px;
+    margin-top: 10px;
+    border-left: 2px solid rgba(212, 175, 55, 0.5); /* var(--gold) transparan */
+    padding-left: 10px;
+}
+.reply-item {
+    margin-top: 8px;
+    background: rgba(255, 255, 255, 0.45);
+    padding: 10px;
+    border-radius: 8px;
+    animation: fadeIn 0.4s ease;
+}
+.reply-form-container {
+    display: none;
+    margin-top: 10px;
+    background: rgba(255, 255, 255, 0.55);
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px dashed var(--gold);
+}
+.reply-form-container.active {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+.reply-input, .reply-textarea {
+    width: 100%;
+    padding: 8px 10px;
+    margin-bottom: 8px;
+    border: 1px solid var(--gold);
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-family: var(--font-body);
+    box-sizing: border-box;
+    background: rgba(255,255,255,0.8);
+}
+.reply-input:focus, .reply-textarea:focus {
+    outline: none;
+    background: #fff;
+    box-shadow: 0 0 5px rgba(212, 175, 55, 0.3);
+}
+.reply-submit-btn {
+    background: var(--burgundy);
+    color: white;
+    border: none;
+    padding: 6px 15px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-family: var(--font-body);
+    cursor: pointer;
+    font-weight: 600;
+}
+.reply-submit-btn:disabled {
+    opacity: 0.6;
+}
+
 /* --- Tarian Menyesuaikan Musik (Mempelai Slide) --- */
 .intro-text-music {
     border: 1.5px solid rgba(235, 211, 122, 0.8);
