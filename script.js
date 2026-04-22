@@ -1,7 +1,19 @@
 document.addEventListener('DOMContentLoaded', () => {
     // --- Parse Guest Name from URL ---
-    const urlParams = new URLSearchParams(window.location.search);
-    const guestNameParam = urlParams.get('to');
+    // Mengambil manual parameter 'to' agar simbol '&' yang tidak di-encode tetap terbaca
+    let guestNameParam = null;
+    const searchString = window.location.search;
+    const toIndex = searchString.indexOf('to=');
+    
+    if (toIndex !== -1) {
+        let rawTo = searchString.substring(toIndex + 3);
+        try {
+            guestNameParam = decodeURIComponent(rawTo.replace(/\+/g, ' '));
+        } catch (e) {
+            guestNameParam = rawTo.replace(/\+/g, ' ');
+        }
+    }
+    
     const guestNameEl = document.getElementById('guestName');
     if (guestNameParam && guestNameEl) {
         guestNameEl.innerText = guestNameParam;
