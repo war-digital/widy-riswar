@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kirim Undangan Widy & Riswar</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #f7f3ec; 
+            color: #333; 
+            padding: 20px; 
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container { 
+            width: 100%; 
+            max-width: 500px; 
+            background: #fff; 
+            padding: 30px; 
+            border-radius: 15px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); 
+        }
+        h2 { 
+            text-align: center; 
+            color: #800020; /* Warna marun sesuai tema */
+            margin-top: 0; 
+            font-size: 1.5rem;
+        }
+        .desc {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 25px;
+        }
+        .form-group { 
+            margin-bottom: 20px; 
+        }
+        label { 
+            display: block; 
+            font-weight: 600; 
+            margin-bottom: 8px; 
+            font-size: 0.9rem; 
+        }
+        input[type="text"], textarea { 
+            width: 100%; 
+            padding: 12px; 
+            border: 1px solid #ddd; 
+            border-radius: 8px; 
+            font-family: inherit; 
+            font-size: 0.95rem; 
+            box-sizing: border-box; 
+            transition: border-color 0.3s;
+        }
+        input[type="text"]:focus, textarea:focus {
+            border-color: #800020;
+            outline: none;
+        }
+        button { 
+            display: inline-flex; 
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            width: 100%; 
+            padding: 14px; 
+            border: none; 
+            border-radius: 8px; 
+            font-weight: 600; 
+            font-size: 1rem; 
+            cursor: pointer; 
+            transition: 0.3s; 
+            margin-bottom: 12px; 
+        }
+        .btn-wa { 
+            background-color: #25D366; 
+            color: white; 
+        }
+        .btn-wa:hover { 
+            background-color: #1ebe5d; 
+        }
+        .btn-copy { 
+            background-color: #800020; 
+            color: white; 
+        }
+        .btn-copy:hover { 
+            background-color: #600018; 
+        }
+        .preview-box { 
+            margin-top: 20px; 
+            padding: 15px; 
+            background: #f9f9f9; 
+            border: 1px solid #e0e0e0; 
+            border-radius: 8px; 
+            font-size: 0.85rem; 
+            word-break: break-word; 
+            white-space: pre-wrap;
+            display: none;
+        }
+        .toggle-preview {
+            text-align: center;
+            font-size: 0.85rem;
+            color: #800020;
+            cursor: pointer;
+            text-decoration: underline;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Generator Undangan WA</h2>
+        <p class="desc">Buat dan kirim undangan dengan nama tamu yang otomatis menyesuaikan.</p>
+        
+        <div class="form-group">
+            <label for="guestName">Nama Tamu:</label>
+            <input type="text" id="guestName" placeholder="Contoh: Bapak Budi & Keluarga" oninput="updatePreview()">
+        </div>
+
+        <div class="form-group">
+            <label for="messageTemplate">Template Pesan:</label>
+            <textarea id="messageTemplate" rows="12" oninput="updatePreview()">Bismillahirahmanirrahim.
+
+Assalamu'alaikum Warahmatullahi Wabarakatuh.
+
+Tanpa mengurangi rasa hormat, perkenankan kami mengundang Bapak/Ibu/Saudara/i:
+
+*{{nama_tamu}}*
+
+Untuk hadir dan memberikan doa restu pada acara pernikahan kami.
+
+Detail acara dan undangan dapat dilihat pada tautan berikut:
+{{link_undangan}}
+
+Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir.
+
+Wassalamu'alaikum Warahmatullahi Wabarakatuh.
+
+Salam hangat,
+Widy & Riswar</textarea>
+        </div>
+
+        <button class="btn-wa" onclick="sendWA()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/>
+            </svg>
+            Kirim ke WhatsApp
+        </button>
+        <button class="btn-copy" onclick="copyLink()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+                <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+            </svg>
+            Salin Pesan
+        </button>
+
+        <div class="toggle-preview" onclick="togglePreview()">Lihat pratinjau pesan</div>
+        <div class="preview-box" id="previewBox"></div>
+    </div>
+
+    <script>
+        function getBaseUrl() {
+            // Ambil URL saat ini, hapus parameter dan hash
+            let url = window.location.href.split('?')[0].split('#')[0];
+            // Ganti nama file ini dengan nama file utama undangan
+            if (url.endsWith('share.html')) {
+                return url.replace('share.html', '');
+            }
+            if (!url.endsWith('/')) {
+                url += '/';
+            }
+            return url;
+        }
+
+        function generateMessage() {
+            let name = document.getElementById('guestName').value.trim();
+            if (!name) name = "Tamu Undangan"; // Default jika kosong
+            
+            // Encode nama untuk di URL
+            let encodedName = encodeURIComponent(name);
+            let link = getBaseUrl() + "?to=" + encodedName;
+            
+            let template = document.getElementById('messageTemplate').value;
+            let finalMessage = template.replace('{{nama_tamu}}', name).replace('{{link_undangan}}', link);
+            
+            return finalMessage;
+        }
+
+        function updatePreview() {
+            let finalMessage = generateMessage();
+            document.getElementById('previewBox').innerText = finalMessage;
+        }
+
+        function togglePreview() {
+            let box = document.getElementById('previewBox');
+            if (box.style.display === 'block') {
+                box.style.display = 'none';
+            } else {
+                updatePreview();
+                box.style.display = 'block';
+            }
+        }
+
+        function sendWA() {
+            let name = document.getElementById('guestName').value.trim();
+            if (!name) {
+                alert("Silakan masukkan nama tamu terlebih dahulu.");
+                document.getElementById('guestName').focus();
+                return;
+            }
+            let text = encodeURIComponent(generateMessage());
+            window.open("https://wa.me/?text=" + text, "_blank");
+        }
+
+        function copyLink() {
+            let name = document.getElementById('guestName').value.trim();
+            if (!name) {
+                alert("Silakan masukkan nama tamu terlebih dahulu.");
+                document.getElementById('guestName').focus();
+                return;
+            }
+            let text = generateMessage();
+            navigator.clipboard.writeText(text).then(() => {
+                alert("Pesan berhasil disalin! Silakan tempel (paste) di WhatsApp.");
+            }).catch(err => {
+                alert("Gagal menyalin pesan.");
+            });
+        }
+    </script>
+</body>
+</html>
